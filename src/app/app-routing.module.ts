@@ -1,18 +1,16 @@
-import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { MainModule } from './pages/main/main.module';
-import { ImagesComponent } from './pages/images/images.component';
+import { NgModule } from '@angular/core';
+import { SharedModule } from './shared.module';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => MainModule,
+    loadChildren: () => import('./pages/main/main.module').then(r => r.MainModule),
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), SharedModule],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
